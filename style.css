@@ -1,1 +1,19 @@
 
+body {
+  background: #0f172a;
+  color: #ffffff;
+  font-family: Tahoma, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding-top: 100px;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: #94a3b8;
+}
