@@ -10,45 +10,79 @@
 <body>
 
 <header>
+<div>
 <h1>📈 رادار</h1>
-<p>اتصال به دیتابیس در حال انجام...</p>
+<p>دستیار هوشمند تحلیل بازار</p>
+</div>
 </header>
 
+<section class="hero">
+<h2>نماد منتخب دیتابیس</h2>
+<h1 id="symbol">درحال بارگذاری...</h1>
+<p id="scoreText">...</p>
+</section>
+
+<div class="market-box">
+<div class="market-item">
+<h3>تکنیکال</h3>
+<span id="technical">...</span>
+</div>
+
+<div class="market-item">
+<h3>پول هوشمند</h3>
+<span id="smartMoney">...</span>
+</div>
+
+<div class="market-item">
+<h3>روند</h3>
+<span id="trend">...</span>
+</div>
+</div>
+
 <div class="card">
-<h2>نماد منتخب</h2>
-
-<h1 id="symbol">...</h1>
+<h2>داده دریافتی از Supabase</h2>
 
 <div class="row">
-<span>امتیاز</span>
-<b id="score">...</b>
+<span>بنیادی</span>
+<b id="fundamental">...</b>
 </div>
 
 <div class="row">
-<span>تکنیکال</span>
-<b id="technical">...</b>
-</div>
-
-<div class="row">
-<span>پول هوشمند</span>
-<b id="smart_money">...</b>
+<span>صنعت</span>
+<b id="industry">...</b>
 </div>
 
 </div>
+
+<nav>
+<a href="#">خانه</a>
+<a href="#">رادار</a>
+<a href="#">واچ‌لیست</a>
+<a href="#">پروفایل</a>
+</nav>
 
 <script>
 
 fetch("https://stnhjfodwurnbkzxgnen.supabase.co/rest/v1/stocks?select=*")
-.then(res=>res.json())
-.then(data=>{
+.then(response => response.json())
+.then(data => {
 
-let stock=data[0];
+const stock = data[0];
 
-document.getElementById("symbol").innerText=stock.Symbol;
-document.getElementById("score").innerText=stock.Score;
-document.getElementById("technical").innerText=stock.Technical;
-document.getElementById("smart_money").innerText=stock.Smart_money;
+document.getElementById("symbol").innerText = stock.Symbol;
+document.getElementById("scoreText").innerText = "امتیاز " + stock.Score + " از 100";
 
+document.getElementById("technical").innerText = stock.Technical;
+document.getElementById("smartMoney").innerText = stock.Smart_money;
+document.getElementById("trend").innerText = stock.Trend;
+
+document.getElementById("fundamental").innerText = stock.Fundamental;
+document.getElementById("industry").innerText = stock.Industry;
+
+})
+.catch(error => {
+console.log(error);
+document.getElementById("symbol").innerText = "خطا در اتصال";
 });
 
 </script>
