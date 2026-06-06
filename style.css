@@ -1,9 +1,10 @@
 body{
 background:#0f172a;
-color:#fff;
+color:white;
 font-family:Tahoma,sans-serif;
 margin:0;
 padding:20px;
+padding-bottom:90px;
 direction:rtl;
 }
 
@@ -13,31 +14,68 @@ margin-bottom:25px;
 
 header h1{
 margin:0;
-font-size:32px;
+font-size:34px;
 }
 
 header p{
-color:#94a3b8;
 margin-top:8px;
+color:#94a3b8;
+}
+
+.market-box{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.market-item{
+flex:1;
+background:#1e293b;
+padding:15px;
+border-radius:16px;
+text-align:center;
+}
+
+.market-item h3{
+font-size:14px;
+margin:0 0 10px;
+color:#94a3b8;
+}
+
+.market-item span{
+font-size:18px;
+font-weight:bold;
 }
 
 .card{
 background:#1e293b;
 padding:18px;
 border-radius:16px;
-margin-bottom:16px;
-box-shadow:0 4px 12px rgba(0,0,0,.2);
+margin-bottom:15px;
 }
 
 .card h2{
 margin-top:0;
-font-size:20px;
+font-size:18px;
 }
 
-.card p{
+.row{
 display:flex;
 justify-content:space-between;
-color:#e2e8f0;
+align-items:center;
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.row:last-child{
+border:none;
+}
+
+.row b{
+background:#22c55e;
+padding:4px 10px;
+border-radius:20px;
+font-size:14px;
 }
 
 nav{
@@ -48,7 +86,7 @@ left:0;
 background:#1e293b;
 display:flex;
 justify-content:space-around;
-padding:15px;
+padding:16px;
 }
 
 nav a{
