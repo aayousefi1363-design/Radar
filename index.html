@@ -1,4 +1,3 @@
-</html>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -11,69 +10,48 @@
 <body>
 
 <header>
-<div>
 <h1>📈 رادار</h1>
-<p>دستیار هوشمند تحلیل بازار</p>
-</div>
+<p>اتصال به دیتابیس در حال انجام...</p>
 </header>
 
-<section class="hero">
-<h2>بهترین فرصت امروز</h2>
-<h1>فملی</h1>
-<p>امتیاز 87 از 100</p>
-</section>
-
-<div class="market-box">
-<div class="market-item">
-<h3>شاخص کل</h3>
-<span class="green">+1.8%</span>
-</div>
-
-<div class="market-item">
-<h3>ورود پول</h3>
-<span class="green">420B</span>
-</div>
-
-<div class="market-item">
-<h3>نماد مثبت</h3>
-<span>312</span>
-</div>
-</div>
-
-<div class="card stock-card">
-<h2>تحلیل فملی</h2>
-
-<div class="metrics">
-<div><span>تکنیکال</span><b>26/30</b></div>
-<div><span>پول هوشمند</span><b>18/20</b></div>
-<div><span>روند</span><b>14/15</b></div>
-<div><span>بنیادی</span><b>12/15</b></div>
-<div><span>صنعت</span><b>9/10</b></div>
-</div>
-</div>
-
 <div class="card">
-<h2>🎯 فرصت‌های امروز</h2>
-<div class="row"><span>فملی</span><b>87</b></div>
-<div class="row"><span>فولاد</span><b>84</b></div>
-<div class="row"><span>شپنا</span><b>82</b></div>
-<div class="row"><span>کگل</span><b>80</b></div>
-<div class="row"><span>وبملت</span><b>78</b></div>
+<h2>نماد منتخب</h2>
+
+<h1 id="symbol">...</h1>
+
+<div class="row">
+<span>امتیاز</span>
+<b id="score">...</b>
 </div>
 
-<div class="card">
-<h2>🔥 صنایع داغ</h2>
-<div class="row"><span>فلزات</span><b>92</b></div>
-<div class="row"><span>پالایشی</span><b>88</b></div>
-<div class="row"><span>بانکی</span><b>81</b></div>
+<div class="row">
+<span>تکنیکال</span>
+<b id="technical">...</b>
 </div>
 
-<nav>
-<a href="#">خانه</a>
-<a href="#">رادار</a>
-<a href="#">واچ‌لیست</a>
-<a href="#">پروفایل</a>
-</nav>
+<div class="row">
+<span>پول هوشمند</span>
+<b id="smart_money">...</b>
+</div>
+
+</div>
+
+<script>
+
+fetch("https://stnhjfodwurnbkzxgnen.supabase.co/rest/v1/stocks?select=*")
+.then(res=>res.json())
+.then(data=>{
+
+let stock=data[0];
+
+document.getElementById("symbol").innerText=stock.Symbol;
+document.getElementById("score").innerText=stock.Score;
+document.getElementById("technical").innerText=stock.Technical;
+document.getElementById("smart_money").innerText=stock.Smart_money;
+
+});
+
+</script>
 
 </body>
 </html>
