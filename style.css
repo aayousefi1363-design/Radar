@@ -1,5 +1,5 @@
 body{
-background:#0f172a;
+background:#0b1220;
 color:white;
 font-family:Tahoma,sans-serif;
 margin:0;
@@ -14,11 +14,22 @@ margin-bottom:20px;
 
 header h1{
 margin:0;
-font-size:34px;
 }
 
 header p{
 color:#94a3b8;
+}
+
+.hero{
+background:linear-gradient(135deg,#2563eb,#22c55e);
+padding:24px;
+border-radius:22px;
+margin-bottom:20px;
+}
+
+.hero h1{
+margin:10px 0;
+font-size:42px;
 }
 
 .market-box{
@@ -36,17 +47,13 @@ text-align:center;
 }
 
 .market-item h3{
-font-size:13px;
+font-size:12px;
 margin:0 0 8px;
 color:#94a3b8;
 }
 
-.market-item span{
-font-weight:bold;
-}
-
 .green{
-color:#22c55e;
+color:#4ade80;
 }
 
 .card{
@@ -56,58 +63,22 @@ border-radius:18px;
 margin-bottom:15px;
 }
 
-.stock-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.stock-head p{
-margin:5px 0 0;
-color:#94a3b8;
-}
-
-.score{
-background:#22c55e;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-font-weight:bold;
-}
-
-.progress{
-height:10px;
-background:#334155;
-border-radius:20px;
-overflow:hidden;
-margin:20px 0;
-}
-
-.bar{
-height:100%;
-background:#22c55e;
+.card h2{
+margin-top:0;
 }
 
 .metrics div{
 display:flex;
 justify-content:space-between;
-padding:8px 0;
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.metrics div:last-child{
-border:none;
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .row{
 display:flex;
 justify-content:space-between;
-padding:10px 0;
-border-bottom:1px solid rgba(255,255,255,.06);
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .row:last-child{
@@ -116,7 +87,7 @@ border:none;
 
 .row b{
 background:#22c55e;
-padding:4px 10px;
+padding:5px 12px;
 border-radius:20px;
 }
 
@@ -125,13 +96,13 @@ position:fixed;
 bottom:0;
 left:0;
 right:0;
-background:#1e293b;
+background:#111827;
 display:flex;
 justify-content:space-around;
 padding:16px;
 }
 
 nav a{
-text-decoration:none;
 color:white;
+text-decoration:none;
 }
