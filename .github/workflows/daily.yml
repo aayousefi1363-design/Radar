@@ -2,8 +2,8 @@ name: Radar Daily Data Fetch
 
 on:
   schedule:
-    - cron: '00 05 * * 1-5'  # هر روز کاری ساعت ۸:۳۰ تهران (۰۵:۰۰ UTC)
-  workflow_dispatch:           # اجرای دستی هم ممکنه
+    - cron: '00 05 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   fetch:
@@ -23,4 +23,4 @@ jobs:
       - name: Run fetcher
         env:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-        run: python fetcher.py
+        run: python test_tse.py
