@@ -1,0 +1,26 @@
+name: Radar Daily Data Fetch
+
+on:
+  schedule:
+    - cron: '00 05 * * 1-5'  # هر روز کاری ساعت ۸:۳۰ تهران (۰۵:۰۰ UTC)
+  workflow_dispatch:           # اجرای دستی هم ممکنه
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run fetcher
+        env:
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: python fetcher.py
