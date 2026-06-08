@@ -2,124 +2,256 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>رادار</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>رادار — دستیار هوشمند بازار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c10;--bg2:#0e1419;--bg3:#161d25;--border:#1e2832;--border2:#252f3a;--text:#e8edf2;--text2:#8a97a6;--text3:#4a5568;--green:#00d084;--green2:#00a868;--green-dim:rgba(0,208,132,0.08);--green-glow:rgba(0,208,132,0.15);--red:#ff4d6a;--amber:#f0a500;--blue:#4d9fff;--radius:14px;--radius-sm:8px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Vazirmatn',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;padding-bottom:88px;overflow-x:hidden}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(8,12,16,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 20px 12px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--green),var(--green2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 16px var(--green-glow)}
+.logo-text{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.5px}
+.logo-sub{font-size:10px;color:var(--text3);margin-top:1px}
+.live-badge{display:flex;align-items:center;gap:5px;background:var(--green-dim);border:1px solid rgba(0,208,132,0.2);border-radius:20px;padding:5px 10px;font-size:11px;color:var(--green)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.market-strip{display:flex;gap:8px;padding:12px 20px;overflow-x:auto;scrollbar-width:none}
+.market-strip::-webkit-scrollbar{display:none}
+.mstat{flex-shrink:0;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 14px;text-align:center;min-width:90px}
+.mstat-val{font-size:14px;font-weight:700}
+.mstat-val.g{color:var(--green)}
+.mstat-val.r{color:var(--red)}
+.mstat-lbl{font-size:10px;color:var(--text3);margin-top:2px}
+.hero{margin:4px 16px 16px;border-radius:var(--radius);background:linear-gradient(145deg,#0a1f17,#0d2d1e,#091a13);border:1px solid rgba(0,208,132,0.2);padding:20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(0,208,132,0.12),transparent 70%);pointer-events:none}
+.hero-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hero-label{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.hero-rank-badge{background:var(--green-dim);border:1px solid rgba(0,208,132,0.25);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--green);font-weight:600}
+.hero-symbol{font-size:32px;font-weight:800;color:#fff;margin-bottom:3px}
+.hero-name{font-size:12px;color:var(--text2);margin-bottom:12px}
+.hero-score-row{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.hero-score-num{font-size:42px;font-weight:800;color:var(--green);line-height:1}
+.hero-score-max{font-size:14px;color:var(--text3)}
+.hero-reason{font-size:12px;color:var(--text2);line-height:1.7;background:rgba(0,208,132,0.05);border:1px solid rgba(0,208,132,0.12);border-radius:var(--radius-sm);padding:10px 12px;border-right:2px solid var(--green)}
+.section{margin:0 16px 16px}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec-title{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px}
+.sec-icon{font-size:15px}
+.breakdown{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.brow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.brow:last-child{margin-bottom:0}
+.brow-lbl{font-size:12px;color:var(--text2);width:80px;text-align:right;flex-shrink:0}
+.brow-bar-bg{flex:1;height:5px;border-radius:3px;background:var(--border2);overflow:hidden}
+.brow-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green2),var(--green));transition:width .8s cubic-bezier(.4,0,.2,1)}
+.brow-num{font-size:12px;color:var(--text);font-weight:600;width:38px;text-align:left;flex-shrink:0}
+.opp-list{display:flex;flex-direction:column;gap:8px}
+.opp-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s,background .2s}
+.opp-item:active{background:var(--bg3)}
+.opp-item.top1{border-color:rgba(0,208,132,0.3)}
+.opp-item.top2{border-color:rgba(0,208,132,0.2)}
+.opp-item.top3{border-color:rgba(0,208,132,0.12)}
+.opp-badge{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
+.opp-badge.s1{background:rgba(0,208,132,0.15);color:var(--green)}
+.opp-badge.s2{background:rgba(0,208,132,0.1);color:#00b872}
+.opp-badge.s3{background:rgba(0,208,132,0.07);color:#009a60}
+.opp-badge.sn{background:var(--bg3);color:var(--text2)}
+.opp-info{flex:1;min-width:0}
+.opp-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.opp-sector{font-size:11px;color:var(--text3);margin-bottom:5px}
+.opp-tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text2);border:1px solid var(--border2)}
+.tag.g{background:rgba(0,208,132,0.08);color:var(--green);border-color:rgba(0,208,132,0.2)}
+.tag.a{background:rgba(240,165,0,0.08);color:var(--amber);border-color:rgba(240,165,0,0.2)}
+.tag.b{background:rgba(77,159,255,0.08);color:var(--blue);border-color:rgba(77,159,255,0.2)}
+.opp-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.opp-change{font-size:11px;font-weight:600}
+.opp-change.g{color:var(--green)}
+.opp-change.r{color:var(--red)}
+.sector-grid{display:flex;flex-direction:column;gap:8px}
+.sector-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;display:flex;align-items:center;gap:12px}
+.sector-rank{width:32px;height:32px;border-radius:8px;background:rgba(0,208,132,0.1);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--green);flex-shrink:0}
+.sector-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.sector-bar-wrap{width:70px}
+.sector-bar-bg{height:4px;border-radius:2px;background:var(--border2);overflow:hidden}
+.sector-bar-fill{height:100%;border-radius:2px;background:var(--green)}
+.sector-score-txt{font-size:12px;color:var(--text2);text-align:left;margin-top:3px}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:430px;max-width:100%;background:rgba(8,12,16,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;padding:8px 0 20px;z-index:100}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:4px 0}
+.nav-ico{font-size:22px;color:var(--text3);transition:color .2s}
+.nav-lbl{font-size:10px;color:var(--text3);transition:color .2s}
+.nav-item.active .nav-ico,.nav-item.active .nav-lbl{color:var(--green)}
+.loading-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:14px}
+.spinner{width:36px;height:36px;border:3px solid var(--border2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:13px;color:var(--text3)}
+.fade-in{animation:fadeIn .4s ease forwards}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
 </head>
-
 <body>
 
-<header>
-<div>
-<h1>📈 رادار</h1>
-<p>اتصال به Supabase</p>
-</div>
-</header>
-
-<section class="hero">
-<h2>نماد منتخب دیتابیس</h2>
-<h1 id="symbol">در حال بارگذاری...</h1>
-<p id="scoreText">...</p>
-</section>
-
-<div class="market-box">
-
-<div class="market-item">
-<h3>تکنیکال</h3>
-<span id="technical">...</span>
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">📡</div>
+    <div>
+      <div class="logo-text">رادار</div>
+      <div class="logo-sub">دستیار هوشمند بازار</div>
+    </div>
+  </div>
+  <div class="live-badge">
+    <div class="live-dot"></div>
+    زنده
+  </div>
 </div>
 
-<div class="market-item">
-<h3>پول هوشمند</h3>
-<span id="smartMoney">...</span>
+<div class="market-strip">
+  <div class="mstat">
+    <div class="mstat-val g" id="mkt-positive">—</div>
+    <div class="mstat-lbl">نماد مثبت</div>
+  </div>
+  <div class="mstat">
+    <div class="mstat-val" id="mkt-money">—</div>
+    <div class="mstat-lbl">ورود پول (M)</div>
+  </div>
+  <div class="mstat">
+    <div class="mstat-val g" id="mkt-index">—</div>
+    <div class="mstat-lbl">شاخص کل</div>
+  </div>
+  <div class="mstat">
+    <div class="mstat-val" id="mkt-count">—</div>
+    <div class="mstat-lbl">تعداد نماد</div>
+  </div>
 </div>
 
-<div class="market-item">
-<h3>روند</h3>
-<span id="trend">...</span>
+<div id="hero-section"></div>
+<div id="breakdown-section"></div>
+<div id="opportunities-section"></div>
+<div id="sectors-section"></div>
+
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="navigate('home',this)">
+    <div class="nav-ico">🏠</div>
+    <div class="nav-lbl">خانه</div>
+  </div>
+  <div class="nav-item" onclick="navigate('radar',this)">
+    <div class="nav-ico">📡</div>
+    <div class="nav-lbl">رادار</div>
+  </div>
+  <div class="nav-item" onclick="navigate('watchlist',this)">
+    <div class="nav-ico">🔖</div>
+    <div class="nav-lbl">واچ‌لیست</div>
+  </div>
+  <div class="nav-item" onclick="navigate('profile',this)">
+    <div class="nav-ico">👤</div>
+    <div class="nav-lbl">پروفایل</div>
+  </div>
 </div>
-
-</div>
-
-<div class="card">
-
-<h2>داده دریافتی</h2>
-
-<div class="row">
-<span>بنیادی</span>
-<b id="fundamental">...</b>
-</div>
-
-<div class="row">
-<span>صنعت</span>
-<b id="industry">...</b>
-</div>
-
-</div>
-
-<nav>
-<a href="#">خانه</a>
-<a href="#">رادار</a>
-<a href="#">واچ‌لیست</a>
-<a href="#">پروفایل</a>
-</nav>
 
 <script>
+var SUPABASE_URL = "https://stnhjfodwurnbkzxgnen.supabase.co";
+var SUPABASE_KEY = "sb_publishable_BPytcImkHwDspdh-vNGrtw_LjdFM1RL";
+var TRADER_TYPE = "scalper";
+var SCORE_FIELDS = {scalper:"score_scalper",short:"score_short",mid:"score_mid",long:"score_long",safe:"score_safe"};
+var SCORE_FIELD = SCORE_FIELDS[TRADER_TYPE] || "score_scalper";
 
-const SUPABASE_URL =
-"https://stnhjfodwurnbkzxgnen.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_BPytcImkHwDspdh-vNGrtw_LjdFM1RL";
-
-fetch(
-`${SUPABASE_URL}/rest/v1/stocks?select=*`,
-{
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer " + SUPABASE_KEY
+function toFa(n){
+  if(n===null||n===undefined||n==="")return"—";
+  return String(Math.round(parseFloat(n))).replace(/\d/g,function(d){return"۰۱۲۳۴۵۶۷۸۹"[d];});
 }
+function safeNum(val,fb){
+  var n=parseFloat(val);
+  return isNaN(n)?(fb||0):n;
 }
-)
-.then(response=>response.json())
-.then(data=>{
-
-console.log(data);
-
-const stock=data[0];
-
-document.getElementById("symbol").innerText =
-stock.Symbol;
-
-document.getElementById("scoreText").innerText =
-"امتیاز " + stock.Score + " از 100";
-
-document.getElementById("technical").innerText =
-stock.Technical;
-
-document.getElementById("smartMoney").innerText =
-stock.Smart_money;
-
-document.getElementById("trend").innerText =
-stock.Trend;
-
-document.getElementById("fundamental").innerText =
-stock.Fundamental;
-
-document.getElementById("industry").innerText =
-stock.Industry;
-
-})
-.catch(error=>{
-
-console.log(error);
-
-document.getElementById("symbol").innerText =
-"خطا در اتصال";
-
-});
-
+function renderHero(s){
+  var score=Math.round(safeNum(s[SCORE_FIELD]));
+  var rank=safeNum(s.radar_rank,1);
+  document.getElementById("hero-section").innerHTML='<div class="hero fade-in"><div class="hero-top"><div class="hero-label">⭐ بهترین فرصت امروز</div><div class="hero-rank-badge">رتبه '+toFa(rank)+'</div></div><div class="hero-symbol">'+(s.symbol||"—")+'</div><div class="hero-name">'+(s.name||"")+(s.sector?" · "+s.sector:"")+'</div><div class="hero-score-row"><div class="hero-score-num">'+toFa(score)+'</div><div class="hero-score-max">از ۱۰۰</div></div><div class="hero-reason">'+(s.radar_reason||"در حال پردازش...")+'</div></div>';
+}
+function renderBreakdown(s){
+  var rows=[
+    {l:"تکنیکال",v:safeNum(s.technical),m:30},
+    {l:"پول هوشمند",v:safeNum(s.smart_money),m:20},
+    {l:"تابلوخوانی",v:safeNum(s.board_reading),m:20},
+    {l:"روند",v:safeNum(s.trend),m:15},
+    {l:"بنیادی",v:safeNum(s.fundamental),m:15},
+    {l:"صنعت",v:safeNum(s.industry_score),m:10}
+  ];
+  var html=rows.map(function(r){
+    var p=r.m>0?Math.min(100,Math.round(r.v/r.m*100)):0;
+    return'<div class="brow"><div class="brow-lbl">'+r.l+'</div><div class="brow-bar-bg"><div class="brow-bar-fill" style="width:'+p+'%"></div></div><div class="brow-num">'+toFa(r.v)+'/'+toFa(r.m)+'</div></div>';
+  }).join("");
+  document.getElementById("breakdown-section").innerHTML='<div class="section fade-in"><div class="sec-head"><div class="sec-title"><span class="sec-icon">📊</span> تحلیل '+(s.symbol||"")+'</div></div><div class="breakdown">'+html+'</div></div>';
+}
+function renderOpportunities(data){
+  var top=data.slice(0,10);
+  var html=top.map(function(s,i){
+    var r=i+1;
+    var bc=r===1?"s1":r===2?"s2":r===3?"s3":"sn";
+    var tc=r===1?"top1":r===2?"top2":r===3?"top3":"";
+    var sc=Math.round(safeNum(s[SCORE_FIELD]));
+    var ch=safeNum(s.change_percent);
+    var cc=ch>=0?"g":"r";
+    var ct=(ch>=0?"+":"")+ch.toFixed(1)+"٪";
+    var tags=[];
+    if(safeNum(s.technical)>=22)tags.push('<span class="tag g">تکنیکال قوی</span>');
+    if(safeNum(s.smart_money)>=16)tags.push('<span class="tag g">پول هوشمند</span>');
+    if(safeNum(s.board_reading)>=16)tags.push('<span class="tag b">تابلو مثبت</span>');
+    if(safeNum(s.trend)>=12)tags.push('<span class="tag g">روند صعودی</span>');
+    if(safeNum(s.fundamental)>=12)tags.push('<span class="tag a">بنیادی خوب</span>');
+    return'<div class="opp-item '+tc+'" onclick="openStock(\'+'+(s.symbol||"")+'\')"><div class="opp-badge '+bc+'">'+toFa(sc)+'</div><div class="opp-info"><div class="opp-name">'+(s.symbol||"—")+'</div><div class="opp-sector">'+(s.sector||"")+'</div><div class="opp-tags">'+tags.slice(0,3).join("")+'</div></div><div class="opp-right"><div class="opp-change '+cc+'">'+ct+'</div></div></div>';
+  }).join("");
+  document.getElementById("opportunities-section").innerHTML='<div class="section fade-in"><div class="sec-head"><div class="sec-title"><span class="sec-icon">🎯</span> فرصت‌های امروز</div></div><div class="opp-list">'+html+'</div></div>';
+}
+function renderSectors(data){
+  var map={};
+  data.forEach(function(s){
+    if(!s.sector)return;
+    if(!map[s.sector])map[s.sector]=[];
+    map[s.sector].push(safeNum(s[SCORE_FIELD]));
+  });
+  var secs=Object.keys(map).map(function(n){
+    var arr=map[n];
+    return{name:n,avg:arr.reduce(function(a,b){return a+b;},0)/arr.length};
+  }).sort(function(a,b){return b.avg-a.avg;}).slice(0,5);
+  var html=secs.map(function(sec,i){
+    var p=Math.min(100,Math.round(sec.avg));
+    return'<div class="sector-item"><div class="sector-rank">'+toFa(i+1)+'</div><div class="sector-name">'+sec.name+'</div><div class="sector-bar-wrap"><div class="sector-bar-bg"><div class="sector-bar-fill" style="width:'+p+'%"></div></div><div class="sector-score-txt">'+toFa(p)+'</div></div></div>';
+  }).join("");
+  document.getElementById("sectors-section").innerHTML='<div class="section fade-in"><div class="sec-head"><div class="sec-title"><span class="sec-icon">🔥</span> صنایع برتر</div></div><div class="sector-grid">'+html+'</div></div>';
+}
+function navigate(page,el){
+  document.querySelectorAll(".nav-item").forEach(function(n){n.classList.remove("active");});
+  el.classList.add("active");
+}
+function openStock(sym){
+  if(!sym)return;
+  alert("صفحه جزئیات "+sym+" — فاز بعدی");
+}
+async function loadData(){
+  document.getElementById("hero-section").innerHTML='<div class="loading-wrap"><div class="spinner"></div><div class="loading-txt">در حال دریافت داده‌های بازار...</div></div>';
+  try{
+    var res=await fetch(SUPABASE_URL+"/rest/v1/stocks?select=*&order="+SCORE_FIELD+".desc.nullslast",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}});
+    if(!res.ok)throw new Error("خطا");
+    var data=await res.json();
+    if(!Array.isArray(data)||data.length===0){
+      document.getElementById("hero-section").innerHTML='<div class="loading-wrap"><div class="loading-txt">داده‌ای یافت نشد — به زودی اضافه می‌شود</div></div>';
+      return;
+    }
+    document.getElementById("mkt-count").textContent=toFa(data.length);
+    document.getElementById("mkt-positive").textContent=toFa(data.filter(function(s){return safeNum(s.change_percent)>0;}).length);
+    renderHero(data[0]);
+    renderBreakdown(data[0]);
+    renderOpportunities(data);
+    renderSectors(data);
+  }catch(err){
+    console.error(err);
+    document.getElementById("hero-section").innerHTML='<div class="loading-wrap"><div class="loading-txt">خطا در اتصال به سرور</div></div>';
+  }
+}
+loadData();
 </script>
-
 </body>
 </html>
